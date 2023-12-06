@@ -99,14 +99,7 @@
 
     </script>
     <style>
-        @media screen and (max-width:456px)  {
-            #myresult,#myscore{
-                width: 80%;
-            }
-            .main{
-                width: 80%;
-            }
-        }
+        
         body {
             background-color: ghostwhite;
         }
@@ -129,7 +122,7 @@
             flex-direction: column;
             background-color: rgb(242 245 252);
         }
-
+       
         .score {
             display: flex;
             margin-top: 12px;
@@ -138,13 +131,20 @@
 
         .choices {
             margin: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
     
         }
 
-        .btn:hover {
+        .btn1:hover {
             background-color: #76a7ffba !important;
             border: 1px solid !important;
 
+        }
+        .btn1{
+            margin: .2rem 1rem!important;
         }
 
         h1 {
@@ -160,7 +160,7 @@
        .btn-reset {
         background: tomato;
     border: 1px solid transparent;
-    width: 86px;
+    width: 50px;
     border-radius: 5px;
     float: right;
         }
@@ -173,12 +173,29 @@
             text-align: center;
             align-items: center;
             background-color: #e8f0ff;
-            width: 40%;
+            width: 60%;
             margin:12px auto;
             border-radius: 12px;
             flex-direction: column;
             padding: 12px;
 
+        }
+        @media only screen and (max-width:800px) and (min-width:456px)  {
+            #myresult,#myscore{
+                width: 80%;
+              
+            }
+           
+        }
+        @media only screen and (max-width:456px)  {
+            #myresult,#myscore{
+                width: 80%;
+                font-size: .7rem;
+            }
+            .main{
+                width: 80%;
+                flex-direction: column-reverse;
+            }
         }
     </style>
 </head>
@@ -198,10 +215,10 @@
             </div>
             <hr>
             <div class="score" id="myresult">
-                <h6>Current Status</h6>
+                <h6 >Current Status</h6>
             </div>
             <div class="score" id="myscore">
-                <h6>Current Score</h6>
+                <h6 >Current Score/<h6>
             </div>
             <div class="reset_score">
                 <button class=" btn-reset">
