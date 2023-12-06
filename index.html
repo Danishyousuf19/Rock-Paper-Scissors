@@ -26,7 +26,7 @@
             localStorage.setItem("compScore", compScore);
         }
         function UpdateDisplay() {
-            $("#myscore").html("<h6>"+"Current Score"+"</h6>");
+            $("#myscore").html("<h6>" + "Current Score" + "</h6>");
             $("#myscore").append("Your Score :" + userScore);
             $("#myscore").append("<br>Computer Score :" + compScore);
             if (userScore > compScore) {
@@ -54,15 +54,15 @@
 
         }
         $(document).ready(function () {
-            $(".btn-reset").on("click",function(){
-                userScore=0;
-                compScore=0;
+            $(".btn-reset").on("click", function () {
+                userScore = 0;
+                compScore = 0;
                 UpdateLocalStorage();
                 UpdateDisplay();
                 $("#myresult").empty();
                 $("#myresult").html("<h6 >Current Status</h6>");
 
-                
+
             });
         });
 
@@ -73,15 +73,15 @@
                 const compchoice = CompChoices();
                 const Result = calculate(userchoice, compchoice);
                 Update_Score(Result);
-                $("#myresult").html("<h6>"+"Current Status"+"</h6>");
+                $("#myresult").html("<h6>" + "Current Status" + "</h6>");
                 $("#myresult").append("You chose: " + userchoice);
                 $("#myresult").append("<br>Computer chose : " + compchoice);
                 $("#myresult").append("<br>" + Result);
-               
+
                 UpdateDisplay();
                 UpdateLocalStorage();
             });
-           
+
 
         });
         function Update_Score(Result) {
@@ -99,7 +99,6 @@
 
     </script>
     <style>
-        
         body {
             background-color: ghostwhite;
         }
@@ -112,17 +111,17 @@
 
         .main {
             border: 2px solid transparent;
-            box-shadow: 0 0 6px lightblue;
+            box-shadow: 0 0 16px #adebff78;
             border-radius: 12px;
             padding: 5px;
             display: flex;
             justify-content: center;
-            margin: 2rem auto;
+            margin: 2.4rem auto;
             width: 45%;
             flex-direction: column;
-            background-color: rgb(242 245 252);
+            background-color: rgb(245 248 255);
         }
-       
+
         .score {
             display: flex;
             margin-top: 12px;
@@ -135,7 +134,7 @@
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
-    
+
         }
 
         .btn1:hover {
@@ -143,8 +142,9 @@
             border: 1px solid !important;
 
         }
-        .btn1{
-            margin: .2rem 1rem!important;
+
+        .btn1 {
+            margin: .2rem 1rem !important;
         }
 
         h1 {
@@ -157,42 +157,51 @@
             padding: 0.61rem 0;
         }
 
-       .btn-reset {
-        background: tomato;
-    border: 1px solid transparent;
-    width: 50px;
-    border-radius: 5px;
-    float: right;
+        .btn-reset {
+            background: tomato;
+            border: 1px solid transparent;
+            width: 50px;
+            border-radius: 5px;
+            float: right;
         }
 
         .btn-reset:hover {
             background-color: rgb(253, 131, 110) !important;
             border: 1px solid;
         }
-        #myresult,#myscore{
+
+        #myresult,
+        #myscore {
             text-align: center;
             align-items: center;
             background-color: #e8f0ff;
             width: 60%;
-            margin:12px auto;
+            margin: 12px auto;
             border-radius: 12px;
             flex-direction: column;
             padding: 12px;
 
         }
-        @media only screen and (max-width:800px) and (min-width:456px)  {
-            #myresult,#myscore{
+
+        @media only screen and (max-width:800px) and (min-width:456px) {
+
+            #myresult,
+            #myscore {
                 width: 80%;
-              
+
             }
-           
+
         }
-        @media only screen and (max-width:456px)  {
-            #myresult,#myscore{
+
+        @media only screen and (max-width:456px) {
+
+            #myresult,
+            #myscore {
                 width: 80%;
                 font-size: .7rem;
             }
-            .main{
+
+            .main {
                 width: 80%;
                 flex-direction: column-reverse;
             }
@@ -215,10 +224,10 @@
             </div>
             <hr>
             <div class="score" id="myresult">
-                <h6 >Current Status</h6>
+                <h6>Current Status</h6>
             </div>
             <div class="score" id="myscore">
-                <h6 >Current Score/<h6>
+                <h6>Current Score/<h6>
             </div>
             <div class="reset_score">
                 <button class=" btn-reset">
