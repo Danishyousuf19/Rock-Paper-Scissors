@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        let userScore = 0;
+        let compScore = 0;
+        function getScoreFromStorage() {
+            const userScore_from_storage = localStorage.getItem("userScore");
+            const compScore_from_storage = localStorage.getItem("compScore");
+            if (userScore_from_storage != null && compScore_from_storage != null) {
+                userScore = parseInt(userScore_from_storage);
+                compScore = parseInt(compScore_from_storage);
+                UpdateDisplay();
+            }
+        }
+        function UpdateLocalStorage() {
+            localStorage.setItem("userScore", userScore);
+            localStorage.setItem("compScore", compScore);
+        }
+        function UpdateDisplay() {
+            $("#myscore").html("<h6>"+"Current Score"+"</h6>");
+            $("#myscore").append("Your Score :" + userScore);
+            $("#myscore").append("<br>Computer Score :" + compScore);
+            if (userScore > compScore) {
+                $("#myscore").append("<br>You are in Lead");
+            }
+            else if (userScore < compScore) {
+                $("#myscore").append("<br>Computer is in Lead");
+            }
+            else {
+                $("#myscore").append("<br>Draw!");
+            }
+
+        }
+        function calculate(user, comp) {
+            if (user == comp) {
+                return "It's a tie!";
+            }
+            else if ((user == "Rock" && comp == "Scissors") ||
+                (user == "Paper" && comp == "Rock") ||
+                (user == "Scissors" && comp == "Paper")) {
+                return "YOU WON";
+            } else {
+                return "COMPUTER WON";
+            }
+
+        }
+        $(document).ready(function () {
+            $(".btn-reset").on("click",function(){
+                userScore=0;
+                compScore=0;
+                UpdateLocalStorage();
+                UpdateDisplay();
+                $("#myresult").empty();
+                $("#myresult").html("<h6 >Current Status</h6>");
+
+                
+            });
+        });
+
+        $(document).ready(function () {
+            getScoreFromStorage();
+            $(".btn1").on("click", function () {
+                var userchoice = $(this).attr("id");
+                const compchoice = CompChoices();
+                const Result = calculate(userchoice, compchoice);
+                Update_Score(Result);
+                $("#myresult").html("<h6>"+"Current Status"+"</h6>");
+                $("#myresult").append("You chose: " + userchoice);
+                $("#myresult").append("<br>Computer chose : " + compchoice);
+                $("#myresult").append("<br>" + Result);
+               
+                UpdateDisplay();
+                UpdateLocalStorage();
+            });
+           
+
+        });
+        function Update_Score(Result) {
+            if (Result == "YOU WON") {
+                userScore++;
+            }
+            else if (Result == "COMPUTER WON") {
+                compScore++;
+            }
+        }
+        function CompChoices() {
+            const ch = ["Rock", "Paper", "Scissors"];
+            return ch[Math.floor(Math.random() * 3)];
+        }
+
+    </script>
+    <style>
+        @media screen and (max-width:456px)  {
+            #myresult,#myscore{
+                width: 80%;
+            }
+            .main{
+                width: 80%;
+            }
+        }
+        body {
+            background-color: ghostwhite;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        .main {
+            border: 2px solid transparent;
+            box-shadow: 0 0 6px lightblue;
+            border-radius: 12px;
+            padding: 5px;
+            display: flex;
+            justify-content: center;
+            margin: 2rem auto;
+            width: 45%;
+            flex-direction: column;
+            background-color: rgb(242 245 252);
+        }
+
+        .score {
+            display: flex;
+            margin-top: 12px;
+            justify-content: center;
+        }
+
+        .choices {
+            margin: auto;
+    
+        }
+
+        .btn:hover {
+            background-color: #76a7ffba !important;
+            border: 1px solid !important;
+
+        }
+
+        h1 {
+            background-color: #e0f2f1;
+            margin: 0.41rem auto;
+            margin-top: 1rem;
+            width: 80%;
+            border-radius: 14px;
+            box-shadow: 0 0 3px #E0E0E0;
+            padding: 0.61rem 0;
+        }
+
+       .btn-reset {
+        background: tomato;
+    border: 1px solid transparent;
+    width: 86px;
+    border-radius: 5px;
+    float: right;
+        }
+
+        .btn-reset:hover {
+            background-color: rgb(253, 131, 110) !important;
+            border: 1px solid;
+        }
+        #myresult,#myscore{
+            text-align: center;
+            align-items: center;
+            background-color: #e8f0ff;
+            width: 40%;
+            margin:12px auto;
+            border-radius: 12px;
+            flex-direction: column;
+            padding: 12px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 class="display-4 text-center">Rock
+            Paper Scissors</h1>
+        <div class="main">
+            <div class="choices">
+                <button class="btn btn1 " id="Rock"
+                    style="background-color: #76a7ff; width: 86px;margin: .2rem auto;">Rock</button>
+                <button class="btn btn1 " id="Paper"
+                    style="background-color: #76a7ff; width: 86px;margin: .2rem auto;">Paper</button>
+                <button class="btn btn1 " id="Scissors"
+                    style="background-color: #76a7ff; width:86px;margin: .2rem auto;">Scissors</button>
+            </div>
+            <hr>
+            <div class="score" id="myresult">
+                <h6 >Current Status</h6>
+            </div>
+            <div class="score" id="myscore">
+                <h6 >Current Score/h6>
+            </div>
+            <div class="reset_score">
+                <button class=" btn-reset">
+                    Reset
+                </button>
+            </div>
+        </div>
+    </header>
+</body>
+
+</html>
