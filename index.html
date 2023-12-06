@@ -30,13 +30,13 @@
             $("#myscore").append("Your Score :" + userScore);
             $("#myscore").append("<br>Computer Score :" + compScore);
             if (userScore > compScore) {
-                $("#myscore").append("<br>You are in Lead");
+                $("#myscore").append("<br><h6 style='color:tomato'>You are in Lead"+"</h6");
             }
             else if (userScore < compScore) {
-                $("#myscore").append("<br>Computer is in Lead");
+                $("#myscore").append("<br><h6 style='color:tomato'>Computer is in Lead"+"</h6");
             }
             else {
-                $("#myscore").append("<br>Draw!");
+                $("#myscore").append("<br><h6 style='color:tomato'>Draw!"+"</h6");
             }
 
         }
@@ -76,7 +76,7 @@
                 $("#myresult").html("<h6>" + "Current Status" + "</h6>");
                 $("#myresult").append("You chose: " + userchoice);
                 $("#myresult").append("<br>Computer chose : " + compchoice);
-                $("#myresult").append("<br>" + Result);
+                $("#myresult").append("<br> <h6 style='color:tomato'>" + Result+"</h6>");
 
                 UpdateDisplay();
                 UpdateLocalStorage();
@@ -180,6 +180,7 @@
             border-radius: 12px;
             flex-direction: column;
             padding: 12px;
+            font-family: monospace;
 
         }
 
@@ -199,6 +200,7 @@
             #myscore {
                 width: 80%;
                 font-size: .7rem;
+                font-family: 'Courier New', Courier, monospace;
             }
 
             .main {
@@ -206,6 +208,7 @@
                 flex-direction: column-reverse;
             }
         }
+
     </style>
 </head>
 
