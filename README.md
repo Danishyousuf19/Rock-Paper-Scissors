@@ -11,4 +11,3 @@ This version includes a glassmorphism UI, persistent score tracking via `localSt
 - **Sound Effects** — Click sounds for feedback (with HTML5 `<audio>`).
 - **Animated Buttons** — Hover and click animations for a modern feel.
 
-## 📂 File Structure
