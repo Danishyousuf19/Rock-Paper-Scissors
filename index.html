@@ -217,8 +217,7 @@
             const $resetBtn = $(".btn-reset");
             const $choiceBtns = $(".choice-btn");
             
-            // --- CACHE AUDIO ---
-            const clickSound = $("#click-sound")[0];
+            
             
             
             // --- GAME STATE ---
@@ -269,12 +268,12 @@
                     $resultText.text("You Win!");
                     $userScoreCard.addClass("winner");
                     $compScoreCard.addClass("loser");
-                    winSound.play();
+                   
                 } else if (result === "COMP_WINS") {
                     $resultText.text("You Lose!");
                     $compScoreCard.addClass("winner");
                     $userScoreCard.addClass("loser");
-                    loseSound.play();
+                    
                 } else {
                     $resultText.text("It's a Tie");
                     $userScoreCard.addClass("tie");
@@ -282,26 +281,10 @@
                 }
             }
 
-            function playRound(userChoice) {
-                clickSound.play();
-                
-                const compChoice = getComputerChoice();
-                const result = determineWinner(userChoice, compChoice);
-
-                $userChoiceDisplay.text(choiceEmojis[userChoice]);
-                $compChoiceDisplay.text(choiceEmojis[compChoice]);
-                $vsText.text("vs");
-
-                if (result === "USER_WINS") userScore++;
-                if (result === "COMP_WINS") compScore++;
-
-                updateScoreboard();
-                updateLocalStorage();
-                updateResultUI(result);
-            }
+         
 
             function resetGame() {
-                clickSound.play();
+                
                 userScore = 0;
                 compScore = 0;
                 updateScoreboard();
@@ -315,9 +298,7 @@
             }
 
             // --- EVENT LISTENERS ---
-            $choiceBtns.on("click", function() {
-                playRound($(this).data("choice"));
-            });
+           
 
             $resetBtn.on("click", resetGame);
 
@@ -328,3 +309,4 @@
 </body>
 
 </html>
+
