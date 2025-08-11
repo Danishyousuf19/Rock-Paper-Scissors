@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RPS Modern</title>
+    <title>RPS Modern (No Sound)</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,9 +17,9 @@
             --primary-color: #38bdf8;
             --text-color: #e5e7eb;
             --text-muted: #9ca3af;
-            --win-glow: #00ff5d;
-            --lose-glow: #ff0000;
-            --tie-glow: #f9ff00;
+            --win-glow: #22c55e;
+            --lose-glow: #ef4444;
+            --tie-glow: #f59e0b;
             --border-radius: 16px;
         }
 
@@ -126,7 +126,7 @@
             width: 80px;
             height: 80px;
             cursor: pointer;
-            transition: all 0.1s ease;
+            transition: all 0.2s ease;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -165,9 +165,6 @@
 </head>
 
 <body>
-   
-   
-
     <div class="game-container">
         <header>
             <h1>Rock, Paper, Scissors</h1>
@@ -217,9 +214,6 @@
             const $resetBtn = $(".btn-reset");
             const $choiceBtns = $(".choice-btn");
             
-            
-            
-            
             // --- GAME STATE ---
             let userScore = 0;
             let compScore = 0;
@@ -268,12 +262,10 @@
                     $resultText.text("You Win!");
                     $userScoreCard.addClass("winner");
                     $compScoreCard.addClass("loser");
-                   
                 } else if (result === "COMP_WINS") {
                     $resultText.text("You Lose!");
                     $compScoreCard.addClass("winner");
                     $userScoreCard.addClass("loser");
-                    
                 } else {
                     $resultText.text("It's a Tie");
                     $userScoreCard.addClass("tie");
@@ -281,10 +273,23 @@
                 }
             }
 
-         
+            function playRound(userChoice) {
+                const compChoice = getComputerChoice();
+                const result = determineWinner(userChoice, compChoice);
+
+                $userChoiceDisplay.text(choiceEmojis[userChoice]);
+                $compChoiceDisplay.text(choiceEmojis[compChoice]);
+                $vsText.text("vs");
+
+                if (result === "USER_WINS") userScore++;
+                if (result === "COMP_WINS") compScore++;
+
+                updateScoreboard();
+                updateLocalStorage();
+                updateResultUI(result);
+            }
 
             function resetGame() {
-                
                 userScore = 0;
                 compScore = 0;
                 updateScoreboard();
@@ -298,7 +303,9 @@
             }
 
             // --- EVENT LISTENERS ---
-           
+            $choiceBtns.on("click", function() {
+                playRound($(this).data("choice"));
+            });
 
             $resetBtn.on("click", resetGame);
 
@@ -307,6 +314,4 @@
         });
     </script>
 </body>
-
 </html>
-
